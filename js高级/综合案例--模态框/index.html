@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .model{
+            width: 300px;
+            height: 150px;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            display: none;
+            box-shadow: inset 0 0 10px #ccc;
+            border-radius: 5px;
+        }
+        .model .header{
+            height: 30px;
+            line-height: 30px;
+            background-color: #ccc;
+            padding-left: 10px;
+        }
+        .model .header i{
+            float: right;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .model .body{
+            height: 100px;
+            padding-left: 10px;
+            display: flex;
+            justify-content: center; 
+             align-items: center; 
+        }
+
+    </style>
+</head>
+<body>
+    <button id="delete">删除</button>
+    <button id="login">登录</button>
+
+
+    <div class="model">
+        <div class="header">温馨提示<i>x</i></div>  <!-- <i>x</i> 斜体 -->
+        <div class="body">您没有删除权限操作</div>
+    </div>
+
+
+    <script>
+        //1.model 构造函数封装
+        function Model(title='',content=''){
+            this.modelBox=document.createElement('div');
+            this.modelBox.className='model';
+            this.modelBox.innerHTML=`
+                <div class="header">${title}<i>x</i></div>
+                <div class="body">${content}</div>
+            `;
+            
+        }
+        new Model('温馨提示','您没有删除权限操作');
+        new Model('友情提示','请先登录');
+
+        let deleteBtn=document.getElementById('delete');
+        let loginBtn=document.getElementById('login');  
+        let closeBtn=document.querySelector('.model .header i');
+        deleteBtn.onclick=function(){
+            model.style.display='block';
+        }
+        loginBtn.onclick=function(){
+            model.style.display='block';
+        }
+        closeBtn.onclick=function(){
+            model.style.display='none';
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>
