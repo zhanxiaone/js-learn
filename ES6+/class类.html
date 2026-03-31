@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // constructor 方法
+        // constructor方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。
+        // 一个类必须有constructor(构造)方法，如果没有显式定义，一个空的constructor方法会被默认添加
+           /*  class Point {}
+            // 等同于
+            class Point {
+            constructor() {}
+            } */
+
+        class Phone{
+            name='';
+            age=0;
+            //构造方法
+            constructor(name,price){
+                this.name=name;
+                this.price=price;
+            }
+
+            call(){
+                console.log("打电话");
+                
+            }
+            // call:Function(){
+
+                // }在类里面不能这样写
+        }    
+
+            /* 在js类中怎么定义成员变量（属性）
+
+            普通成员变量：this.xxx 或直接 xxx = 值
+            私有成员变量：#xxx = 值
+            静态成员变量：static xxx = 值 */
+
+
+
+
+
+
+
+        //实例化对象
+            let phone=new Phone("vivo",1999);
+            console.log(phone);
+
+
+
+        //class继承
+            class People{
+                constructor(name,age){
+                    this.name=name;
+                    this.age=age;
+                }
+
+                play(){
+                    console.log("出去玩");
+                    
+                }
+                
+            }
+            class Woman extends People{
+                constructor(name,age,sex){
+                    super(name,age); //继承父类的属性
+                    this.sex=sex;
+                }
+                photo(){
+                    console.log("拍照");
+                    
+                }
+                //重写父类的方法
+                play(){
+                    console.log("宅家里");
+                    
+                }
+            }
+
+            let z=new Woman('z',15,'女');
+            console.log(z);
+            z.play();
+            
+
+
+
+
+
+
+
+            
+                       
+            
+            
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Ⅰ-函数的概念
+        //         ① 什么是函数
+        //                 实现特定功能的n条语句的封装体
+        //                 只有函数是可以执行的, 其它类型的数据不能执行
+        //         ② 为什么要用函数?
+        //                 提高代码复用
+        //                 便于阅读交流
+        //         ③ 如何定义函数?
+        //                 函数声明
+        //                 表达式
+
+            function fn1 () { console.log('fn1()' )}//函数声明
+                   
+            const fn2 = ()=> console.log('fn2()')  //表达式 不能未定义就使用 函数表达式不存在提升现象
+
+
+
+
+        // Ⅱ-如何调用(执行)函数
+        //         test(): 直接调用
+
+        //         obj.test(): 通过对象调用
+
+        //         new test(): new调用
+        function Person(name){
+            this.name=name;
+            this.introduce=function(){
+                console.log(`我叫${this.name}`);
+                
+            }
+        }
+
+        const person1=new Person("z");
+        person1.introduce();
+
+        //         test.call/apply (obj): 临时让test成为obj的方法进行调用
+        var obj={};
+        function test(){
+            this.xxx='xiaone'
+        }
+        //obj.test();
+        test.call(obj); //就等于 obj.text()
+        //test.apply(obj);
+        console.log(obj.xxx); //xiaone
+        
+
+
+
+
+
+        // Ⅲ-回调函数
+        //     ① 什么函数才是回调函数?
+        //             1.你定义的
+        //             2.你没有调
+        //             3.但最终它执行了(在某个时刻或某个条件下)
+        //     ② 常见的回调函数?
+        //             dom事件回调函数 ==>发生事件的dom元素
+        //             定时器回调函数 ===>window
+        //             ajax请求回调函数(后面讲)
+        //             生命周期回调函数(后面讲)
+
+
+        //             // dom事件回调函数
+        //             document.getElementById('btn').onclick = function () {alert(this.innerHTML)}
+        //             // 定时器回调函数
+        //             setTimeout(function () {   alert('到点了'+this)}, 2000)
+
+
+
+
+        // Ⅳ-IIFE (自调用函数)
+        //         语法格式    (function(){})();
+
+        //     全称: Immediately-Invoked Function Expression 自调用函数
+
+        //     作用:
+        //              隐藏实现
+        //              不会污染外部(一般指全局)命名空间
+        //              用它来编码js模块
+
+
+
+
+
+
+
+                (function () { //匿名函数自调用
+                    var a = 3
+                    console.log(a + 3)
+                })();
+                //console.log(a) ; // a is not defined 因为a是局部变量
+                    
+                //此处前方为何要一个`;`-->因为自调用函数外部有一个()包裹,可能与前方以()结尾的代码被一起认为是函数调用
+                //不加分号可能会被认为这样 console.log(a)(IIFE)
+
+
+               (function () {//不会污染外部(全局)命名空间-->举例
+                    let a = 1;
+                    function test () { console.log(++a) } //声明一个局部函数test
+                    window.$ = function () {  return {test: test} }// 向外暴露一个全局函数
+                })()
+                test ()  //test is not defined
+                $().test() // 1. $是一个函数 2. $执行后返回的是一个对象
+
+
+    </script>
+</body>
+</html>

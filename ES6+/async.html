@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ES2017 标准引入了 async 函数，使得异步操作变得更加方便。
+        //async 函数是什么？一句话，它就是 Generator 函数的语法糖。
+        //async会返回一个Promise对象
+        //promise对象的结果由async函数执行的返回值决定 
+        //await表示紧跟在后面的表达式需要等待结果。
+
+        const p=new Promise((resolve,reject)=>{
+            resolve("成功");
+        })
+            async function fn() {
+                // return 'z';
+                //throw new Error('出错了！');
+                //抛出错误 返回的是一个失败的promise对象
+                let result=await p;
+                console.log(result);
+                
+            }
+            console.log(fn()); //返回promise对象 但没返回值所以[[PromiseResult]]: undefined
+            fn();
+
+
+            //await
+            //正常情况下，await命令后面是一个 Promise 对象，返回该对象的结果。
+            // 如果不是 Promise 对象，就直接返回对应的值。
+                const pro=new Promise((resolve,reject)=>{
+                    //resolve("用户数据");
+                    reject('失败');
+                })
+
+                async function fn2() {
+                    let result=await pro;//pro是promise对象
+                    console.log(result);                    
+                }
+                fn2();
+                fn2().then(x=>console.log(x)).catch(y=>console.log(y));
+
+                async function fn3() {
+                   return await 123; // 就直接返回对应的值。
+                }
+                fn3().then(x=>console.log(x));
+
+
+
+
+
+    </script>
+</body>
+</html>

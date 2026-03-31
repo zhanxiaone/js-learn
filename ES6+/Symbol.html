@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值。它是 JavaScript 语言的第七种数据类型
+        //最大用途：用于定义对象的私有变量    
+            const name=Symbol('name');
+            const name2=Symbol('name');
+            console.log(name === name2);//false
+            
+
+
+        //作为属性名的 Symbol
+          //用Symbol定义的对象中的变量，取值时一定要用[变量名]
+            const mySymbol = Symbol('mySymbol');
+            //第一种写法
+                // let a = {};
+                // a[mySymbol]='z';
+            //第二种写法
+                let a={
+                    [mySymbol]:'z'
+                };
+
+           console.log(a[mySymbol]);    
+            //注意，Symbol 值作为对象属性名时，不能用点运算符。
+
+
+
+
+            //获取Symbol声明的属性名（作为对象的key）
+                //getOwnPropertySymbols()
+                    let i=Object.getOwnPropertySymbols(a);
+                    console.log(i);
+                //Reflect.ownKeys()
+                    let y=Reflect.ownKeys(a);
+                    console.log(y);
+                    
+
+    </script>
+</body>
+</html>

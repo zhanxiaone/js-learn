@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--  shift+alt+a   多行注释 -->
+    <script>
+          /* var命令在全局代码中执行const命令和let命令只能在代码块中执行 他们都具有块级作用域*/ 
+        // let命令：声明变量  
+    
+        let a;
+        let b,c,d;
+        let e=2;
+        // 注意事项: 1.变量不能重复声明   2.未定义就使用会报错：const命令和let命令不存在变量提升
+
+
+        // const命令：声明常量  一定要赋初始值   值不允许被修改  一般常量使用大写
+            const NAME='zmj';
+        //对于数组和对象的元素修改，不算做对常量的修改
+        const ARRAY=[1,2,3,4,5];
+        ARRAY.push(9);
+        console.log(ARRAY);
+
+
+
+        // 作用域链
+        //     本质上是底层的变量查找机制
+        //     *在函数被执行时，会优先查找当前的函数作用域中查找变量
+        //     *如果当前作用域找不到会一次逐级查找父级作用域直到全局作用域
+
+
+
+
+        //变量提升:这是在js中比较奇怪的现象，它允许在变量声明致歉被访问（仅存在于var声明变量）
+            //作用效果：
+                //1.把所有var声明的变量提升到当前作用域的最前面
+                //2.只提升声明 不提升赋值
+
+
+            console.log(num); //underfined
+            var num=10;
+            //上述相当于以下代码
+             var num;
+             console.log(num);
+             num=10;
+
+
+
+        //函数提升：函数在声明之前即可被调用
+             //作用效果：
+                //1.把所有函数声明提升到当前作用域的最前面
+                //2.只提升函数声明 不提升函数赋值
+
+                fn()
+                function fn(){
+                    console.log("函数提升");
+                    
+                }
+
+
+
+                fun();//错误
+                var fun=function(){
+                    console.log("函数表达式");
+                    
+                }
+                //相当于
+              /* var fun;
+                fun() //fun不是函数
+                fun=function(){
+                    console.log("函数表达式");
+                    
+                }*/
+                     
+
+
+    </script>
+</body>

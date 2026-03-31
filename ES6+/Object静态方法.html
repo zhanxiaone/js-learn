@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object.is()
+                // 它用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致。
+
+                        Object.is('foo', 'foo')
+                        // true
+                        Object.is({}, {})
+                        // false
+
+        //Object.assign()
+                // 基本用法
+                // Object.assign()方法用于对象的合并(拷贝)，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
+                //Object.assign()方法的第一个参数是目标对象，后面的参数都是源对象。
+                //注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
+    
+                        const target = { a: 1, b: 1 };
+                        const source1 = { b: 2, c: 2 };
+                        const source2 = { c: 3 };
+
+                        Object.assign(target, source1, source2);
+                        target // {a:1, b:2, c:3}
+
+        //Object.keys()
+                // 获得所有的属性名。返回一个数组
+                        var obj = { foo: 'bar', baz: 42 };
+                        console.log(Object.keys(obj));
+                        // ["foo", "baz"]    
+        //Object.values()
+                //获得所有的属性值 返回一个数组  
+                        console.log(Object.values(obj));
+                        //['bar',42]
+                                         
+                                    
+    </script>
+</body>
+</html>
