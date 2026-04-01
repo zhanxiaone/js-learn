@@ -1,23 +1,31 @@
-  open git bash here
-  要开加速器
   
+  准备工作：
+        open git bash here
+        要开加速器
+  
+----------------------------------------------------
+  command：
+          初次推送：
+              git init    初始化仓库
+              git add .    添加所有文件到暂存区
+              git commit -m  'xxxxx'    提交到本地仓库  引号里的内容是必须写的
 
-  command
-   git init    初始化仓库
-   git add .    添加所有文件到暂存区
-   git commit -m  'xxxxx'    提交到本地仓库  引号里的内容是必须写的
 
+              git remote add origin 远程仓库地址
 
-git remote add origin 远程仓库地址
+              git push -u origin main   //本地仓库上传到了github
 
-git push -u origin main   //本地仓库上传到了github
+          之后再次推送：
 
+              # 直接使用 git push 即可
+                git add .
+                git commit -m "更新文件"
+                git push  # ✅ 自动推送到 origin/main
 
-
-<hr>
+-----------------------------------------------------
 
 git remote -v     再次查看远程仓库地址
-
+git status        查看当前状态
 
 
 
