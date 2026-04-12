@@ -42,11 +42,13 @@
     <button id="delete">删除</button>
     <button id="login">登录</button>
 
-
+<!-- 
     <div class="model">
-        <div class="header">温馨提示<i>x</i></div>  <!-- <i>x</i> 斜体 -->
+        <div class="header">温馨提示<i>x</i></div>   <i>x</i> 斜体 
         <div class="body">您没有删除权限操作</div>
     </div>
+
+ -->
 
 
     <script>
@@ -55,27 +57,63 @@
             this.modelBox=document.createElement('div');
             this.modelBox.className='model';
             this.modelBox.innerHTML=`
-                <div class="header">${title}<i>x</i></div>
+                <div class="header">${title}<i class="close">x</i></div>
                 <div class="body">${content}</div>
             `;
             
         }
-        new Model('温馨提示','您没有删除权限操作');
-        new Model('友情提示','请先登录');
+      
 
-        let deleteBtn=document.getElementById('delete');
-        let loginBtn=document.getElementById('login');  
-        let closeBtn=document.querySelector('.model .header i');
-        deleteBtn.onclick=function(){
-            model.style.display='block';
-        }
-        loginBtn.onclick=function(){
-            model.style.display='block';
-        }
-        closeBtn.onclick=function(){
-            model.style.display='none';
+        //2.给构造函数原型对象挂载open方法
+        Model.prototype.open=function(){
+            //判断页面中是否有模态框，如果有就不创建了
+            const model = document.querySelector('.model');
+            if(model){
+                model.style.display='block';
+                return; ///return 就是“退出当前函数，并且可以带回一个结果”。
+            }
+
+
+
+
+
+
+            //不要用箭头函数，因为箭头函数没有this，this指向外层作用域window
+
+                document.body.append(this.modelBox);
+                this.modelBox.style.display='block';
+
+
+                //只有在打开了模态框之后，才可以绑定关闭事件，
+                document.querySelector('.close').addEventListener('click',()=>{
+                    this.close();
+                    //this指向当前实例对象
+                    //如果使用普通函数，this指向触发事件的元素，即.close（i）元素[没有close方法 会报错]，所以需要使用箭头函数来保持this指向当前实例对象。
+                });
         }
 
+        Model.prototype.close=function(){
+            document.body.removeChild(this.modelBox);
+
+        }
+ 
+
+        //绑定事件
+        document.querySelector('#delete').addEventListener('click',function(){
+            //创建实例调用函数
+            const model = new Model('温馨提示','您没有删除权限操作');
+            model.open();
+        });
+
+
+
+
+        document.querySelector('#login').addEventListener('click',()=>{
+            const model = new Model('友情提示','请先登录');
+            model.open();
+        });
+
+       
 
 
 
