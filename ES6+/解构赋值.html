@@ -55,7 +55,7 @@
                     console.log(uname);//z
                     
                     // console.log(obj.age);
-                    // console.log(obj.uname);//obj重复使用 这时可以结构
+                    // console.log(obj.uname);//obj重复使用 这时可以解构，提高代码的复用
                     // const uname='m';
                     // const {uname:username,age}={uname:"z",age:18}//对象解构的变量名，可以重新改名 旧变量名：新变量名
                     // console.log(age);
@@ -80,16 +80,33 @@
 
 
 
-
-
-
-
-
-
-
         /* 函数参数解构
             数组解构：function Func([x = 0, y = 1]) {}
             对象解构：function Func({ x = 0, y = 1 } = {}) {} */
+
+
+
+            function qiuhe(){
+
+                let sum=0
+                
+                function add(){
+                    sum.value+=1
+                }
+
+                //向外部提供数据
+                return{sum,add}
+
+            }
+            console.log(qiuhe.sum); //underfind
+            
+            
+            //解构
+            const {sum,add}=qiuhe()
+            console.log(sum);  //0
+
+
+
 
     </script>
 </body>
