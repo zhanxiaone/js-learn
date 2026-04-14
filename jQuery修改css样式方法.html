@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="jQuery.js"></script>
+		<title></title>
+	</head>
+	<body>
+		<div style="width: 200px; height: 20px; background-color: aquamarine;"></div>
+	
+	<script>
+		$(function(){
+			console.log($("div").css("width")); //只有属性名 只返回属性值 不改变值
+			$("div").css("height",300);        //参数是属性名，属性值   属性值如果是数字可以不用加单位和引号 反之要加   
+			
+			
+			$("div").css({						//参数可以是对象形式，方便设置多个样式，属性可以不用加引号
+				width:400,
+				height:400,
+				backgroundColor:"red"   //如果是复合属性 要用驼峰命名法 属性值不是数字要加引号
+			})
+			
+		})
+	</script>
+	
+	
+	</body>
+</html>

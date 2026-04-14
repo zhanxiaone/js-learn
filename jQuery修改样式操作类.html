@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jQuery.js"></script>
+		
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: bisque;
+				margin: 100px auto;
+				transition: all 0.5s;
+			}
+			.current {
+				background-color: aquamarine;
+				transform: rotate(360deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="current"></div>
+		
+		<script>
+			$(function(){
+				/* //1.添加类 addClass（）
+					$("div").click(function(){
+						$(this).addClass("current");
+					})
+				//2.删除类 removeClass（）
+					$("div").click(function(){
+						$(this).removeClass("current");
+					}) */
+				//3.切换类 toggleClass（）
+				$("div").click(function(){
+					$(this).toggleClass("current");
+				});
+				
+			})
+		</script>
+		
+		
+	</body>
+</html>
