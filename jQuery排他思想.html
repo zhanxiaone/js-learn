@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jQuery.js"></script>
+	</head>
+	<body>
+		<button style="height: 20px"></button>
+		<button style="height: 20px"></button>
+		<button style="height: 20px"></button>
+		<button style="height: 20px"></button>
+		<button style="height: 20px"></button>
+		
+		
+		<script>
+			
+			
+			
+			$(function(){
+				$('button').click(function(){    //1.隐式迭代 给所有的按钮都绑定了点击事件
+					$(this).css("background","pink");    //2.当前的元素变化背景颜色
+					$(this).siblings('button').css("background",""); //3.其余的兄弟去掉背景颜色 隐式迭代
+				//siblings('button') jQuery筛选方法 查找兄弟节点不包含和本身
+				});
+			})
+		</script>
+	</body>
+</html>

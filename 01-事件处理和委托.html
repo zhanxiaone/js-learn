@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+        
+        .current {
+            background-color: purple;
+        }
+    </style>
+    <script src="jQuery.js"></script>
+</head>
+
+<body>
+    <div></div>
+    <ul>
+        <li>我们都是好孩子</li>
+        <li>我们都是好孩子</li>
+        <li>我们都是好孩子</li>
+        <li>我们都是好孩子</li>
+        <li>我们都是好孩子</li>
+    </ul>
+    <ol>
+
+    </ol>
+	
+	<p>请点击</p>
+	
+    <script>
+        $(function() {
+            // 1. 单个事件注册
+            // $("div").click(function() {
+            //     $(this).css("background", "purple");
+            // });
+            // $("div").mouseenter(function() {
+            //     $(this).css("background", "skyblue");
+            // });
+
+            // 2. 事件处理on 
+			//(1) on可以绑定1个或者多个事件处理程序 以对象形式
+            // $("div").on({
+            //     mouseenter: function() {
+            //         $(this).css("background", "skyblue");
+            //     },
+            //     click: function() {
+            //         $(this).css("background", "purple");
+            //     },
+            //     mouseleave: function() {
+            //         $(this).css("background", "blue");
+            //     }
+            // });
+			
+			//多个事件共用一个函数 都是一个操作
+            $("div").on("mouseenter mouseleave", function() {
+                $(this).toggleClass("current");
+            });
+			
+			
+            // (2) on可以实现事件委托（委派）：就是把原来加给子元素身上的事件绑定在父元素身上，即把事件委派给父元素
+            // $("ul li").click();//给每个子元素都绑定事件
+			//事件委托核心作用：将事件绑定到父元素，利用事件冒泡机制处理子元素事件，避免每个子元素单独绑定事件
+            $("ul").on("click", "li", function() {
+                alert(11);
+            });
+			//点击事件是绑定在ul上的 因为只有一个ul所以大大提高了效率
+			//但是触发对象是li，当鼠标点击li才会触发函数像冒泡一样由内向外逐级传播到父元素，而父元素又绑定了事件因此执行回调函数
+			
+			
+			
+			// (3) on可以给未来动态创建的元素绑定事件
+            // click 是绑定在ul 身上的，但是 触发的对象是 ul 里面的小li
+            // $("ol li").click(function() {
+            //     alert(11);
+            // })
+            $("ol").on("click", "li", function() {
+                alert(11);
+            })
+            var li = $("<li>我是后来创建的</li>");
+            $("ol").append(li);
+			
+			
+			
+			
+			
+			
+		
+				$("div").on({
+					click:function(){
+						console.log("我点击了");
+					},
+					mouseenter:function(){
+						console.log("我鼠标经过了");
+					}
+				})
+				
+				$("ul").on("click", "li", function() {
+				    alert(11);
+				});
+				
+			//off解绑事件
+				$("div").off();//解绑div身上所有事件
+				$("div").off("click");//只解绑click事件
+			//解绑事件委托
+				$("ul").off("click","li");
+			//one方法 只能触发一次事件
+				$("p").one("click",function(){
+					alert("biu!");
+				})
+			
+			
+			
+        })
+		
+		
+
+	
+		
+    </script>
+</body>
+
+</html>

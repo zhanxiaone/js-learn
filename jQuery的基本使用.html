@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jQuery.js"></script>
+		<style>
+			div {
+				width: 200px;
+				height: 200px;
+				background-color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<span></span>
+		<div></div>
+		
+		<video src="#"></video>
+		
+		
+		
+		
+		
+		
+		<script> 
+			// $('div').hide();  普通写法，但需要写在文档内容的后面
+			//为了解决以上问题  引出jQuery的入口函数
+			// 1. $(document).ready(function(){
+			//	 $('div').hide();
+			//  }) 
+			 2. $(function(){
+				 $('div').hide() ;
+			})
+			
+			
+			$是jQuery的别称,同时也是jquery的顶级对象
+			
+			//1.DOM对象：用原生js获取过来的对象就是DOM对象
+				var mydiv=document.querySelector('div');
+				var myspan=document.querySelector('span');
+			//2.jQuery对象：用jQuery方式获取过来的对象是jQuery对象
+				$('div');
+				$('span');
+			//3.jQuery对象只能使用jQuery方法，DOM对象则使用原生的js属性和方法
+				mydiv.style.display='none';
+				//$('div').style.display='none'; 错误
+				$('div').hide();
+				
+				
+			//由于jQuery只是将常用的方法封装,还有一些方法只有在原生js才有
+			//1.DOM对象转换为jQuery对象
+				一.直接获取视频,得到的就是jQuery对象
+					$('video');
+				二.已经使用原生js获取了DOM 对象
+					var myvideo=document.querySelector('video');
+					$(myvideo);
+			//2.jQuery对象转换为DOM对象  jQuery是一个伪数组形式来存储的
+				$('video')[0].play()
+				$('video').get(0).play()
+			
+			
+			
+			
+			
+			
+			
+		</script>
+	</body>
+</html>

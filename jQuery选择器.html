@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="jQuery.js"></script>
+	</head>
+	<body>
+		
+		<!-- <ul>
+			<li><a></a></li>
+			<li><a></a></li>
+			<li><a></a></li>
+		</ul> -->
+		
+		<div>12</div>
+		<div>12</div>
+		<div>12</div>
+		<div>12</div>
+		
+		<script>
+			/* //函数入口
+			$(function(){
+				console.log(('.div'));
+				console.log($('ul a'));//后代选择器
+				console.log($('ul>li'));//子代选择器
+			}) */
+			
+			
+			
+			
+			//获取四个div元素 jQuery对象不能使用style
+				console.log($('div'));
+			//给四div设置背景颜色为粉色
+				$("div").css("background","pink");// 隐式迭代  就是把匹配的所有元素内部进行遍历循环，给每一个元素添加css这个方法
+			
+			//以下是原生js写法需要for循环遍历
+				var divElements=document.querySelectorAll('div');
+				for(var i=0;i<divElements.length;i++){
+					divElements[i].style.background="pink";
+				}
+			
+		</script>
+	</body>
+</html>
