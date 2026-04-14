@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //js原有的表示“集合”的数据结构，主要是数组（Array）和对象（Object）
+        // ES6提供了新的数据结构set（集合） 类似数组但成员的值不会重复（可用于数组去重） 集合实现了iterator接口，可使用扩展运算符和for..of遍历
+        //本质上也是对象 有自己的属性和方法
+        //size属性：返回集合的元素个数
+        //add/delete方法：增加/删除元素
+        //has方法：校验集合是否包含某个元素 返回布尔值
+
+
+            let s=new Set();
+            console.log(s,typeof s);
+            let s2=new Set(['你好','世界','你好','stdio']);
+            // console.log(s2);
+            // s2.add('code');
+            // s2.delete('你好');
+            //校验
+                // console.log(s2.has('世界'));//true
+            //清空
+                // s2.clear();
+            //遍历
+                for(let i of s2){
+                    console.log(i);
+                    
+                }
+
+
+            //使用扩展运算符将set转换为数组（数组去重）
+                let s3=new Set([1,2,3,3,3,4]);
+                console.log(s3);
+                
+                let arr=[...s3];
+                console.log(arr);
+                
+            //交集
+                let s4=new Set([2,4,5,7,9]);
+                let result=[...s4].filter(item=>s3.has(item));
+                console.log(result);
+                //使用了数组的过滤方法
+
+            //并集
+                let union=[...new Set([...s3,...s4])]
+                console.log(union);
+                
+            //补集
+                 let diff=[...s4].filter(item=>!s3.has(item));
+                console.log(diff);
+                
+
+    //ES6提供了新的数据结构Map 它是键值对的有序列表，键和值是任意类型   也实现了iterator接口，可使用扩展运算符和for..of遍历 
+                let m=new Map();
+                //添加元素
+                m.set('name','z');//name是键 z是值
+                
+                m.set('hello',function(){
+                    console.log("world");
+                    
+                })
+
+                let key={school:'bilinili'};
+                m.set(key,['北京','上海']);
+                  
+                console.log(m);
+                //size
+                console.log(m.size);
+                //删除
+                m.delete('name');
+                //获取
+                console.log(m.get('change'));
+                //清空
+                m.clear();
+                //遍历
+                for(let i of m){
+                    console.log(i);
+                    
+                }
+
+
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

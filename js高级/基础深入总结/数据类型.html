@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+           
+            //Ⅰ-基本(值)类型
+                // string: 任意字符串
+                // number: 任意的数字
+                // boolean: true/false
+                // undefined: undefined（表示变量声明但未赋值）
+                // null: null -->使用typeof时返回object   （定义并赋值了, 只是值为null）
+                        let a1=1000n;
+                        let b2=1000;
+                        console.log("a1 type:",typeof a1);
+                        console.log("b2 type",typeof b2);
+                        console.log("result:",a1,b2);
+
+
+
+                console.log('------------------------');
+                
+                          var a
+                            console.log(a)  // undefined
+                            a = null
+                            console.log(a) // null
+
+
+                // symbol (2016新增)。 -->Symbol 是 基本数据类型 的一种，Symbol 对象是 Symbol原始值的封装 (en-US) 。
+                // bigint， -->BigInt 是一种数字类型的数据，它可以表示任意精度格式的整数（较大整数）。
+
+
+
+            // Ⅱ-对象(引用)类型
+                // Object: 任意对象
+                // Function: 一种特别的对象(可以执行) --内部包含可运行的代码
+                // Array: 一种特别的对象(key为数值下标属性, 内部数据是有序的)
+
+
+            // Ⅲ-判断方法
+                //     ①* typeof （返回数据类型的字符串表达） :可以判断: undefined/ 数值 / 字符串 / 布尔值 / function
+                //                 不能判断: null与object以及object与array
+
+                  
+                 var a
+                
+                //注意:typeof返回的是字符串
+                console.log(a, typeof a, typeof a==='undefined',a===undefined )  // undefined 'undefined' true true
+                console.log(undefined === 'undefined') //false
+                a = 4
+                console.log(typeof a==='number',typeof a) //true 'number'
+                a = 'hongjilin'
+                console.log(typeof a==='string') //true
+                console.log(typeof a==='String') //false  -->注意,返回的类型为小写
+                a = true
+                console.log(typeof a==='boolean') //true
+                a = null
+                console.log(typeof a, a===null) // 'object'  true
+                let b={}
+                console.log(typeof b,typeof null) // 'object' 'object'  -->所以Typeof不能判断null与object
+                let c=[]
+                console.log(typeof c,typeof null,'---------');//'object' 'object'    -->所以Typeof不能判断array与object
+                let d=function(){}
+                console.log(typeof d);//'function'
+                console.log(typeof d==='function');//true
+                
+
+
+
+
+
+                //     ②*instanceof：(判断实例方法)专门判断对象的具体类型
+                //                  用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+
+                  var b1 = {
+                        b2: [1, 'abc', console.log],
+                        b3: function () {
+                            console.log('b3');
+                            return function(){
+                                return 'zmj'
+                            }
+                    }
+                }
+
+                    /**使用instanceof进行对象判断*/
+                    console.log(b1 instanceof Object, b1 instanceof Array) // true  false
+                    console.log(b1.b2 instanceof Array, b1.b2 instanceof Object) // true true
+                    console.log(b1.b3 instanceof Function, b1.b3 instanceof Object) // true true
+
+                    /**使用typeof进行对象中某属性的判断*/
+                    console.log(typeof b1.b2, typeof null) // 'object' 'object'  
+                    console.log(typeof b1.b3==='function') // true
+                    console.log(typeof b1.b2[2]==='function') //true
+
+
+
+                    /**调用对象与数组中某函数示例*/
+                    b1.b2[2]('调用console.log打印zmj')    //调用console.log打印zmj
+                    console.log(b1.b3()());             // zmj
+                     
+
+
+
+
+
+
+                //     ③*===：可以判断: undefined, null
+                //            简而言之，在比较两件事情时，双等号(抽象相等比较)将执行类型转换; 三等号（全等/恒等）将进行相同的比较，而不进行类型转换
+
+                            console.log(1=="1");//true
+                            console.log(1==="1");//false
+                            
+
+
+
+
+                            // ③ 严格区别变量类型与数据类型?
+                            //         数据的类型
+                            //         基本类型
+                            //         对象类型
+                            //         变量的类型(变量内存值的类型)
+                            //         基本类型: 保存就是基本类型的数据
+                            //         引用类型: 保存的是地址值(对象类型)
+
+
+    </script>
+</body>
+</html>

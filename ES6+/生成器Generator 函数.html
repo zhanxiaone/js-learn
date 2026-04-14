@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //生成器就是一个特殊的函数
+        //Generator 函数是 ES6 提供的一种异步编程解决方案，语法行为与传统函数完全不同。
+        //形式上，Generator 函数是一个普通函数，但是有两个特征。
+        // 一是，关键字与函数名之间有一个星号；
+        // 二是，函数体内部使用yield表达式，定义不同的内部状态（yield在英语里的意思就是“产出”）。
+
+            function* helloWorldGenerator(arg) {
+                    // console.log(111);
+                    console.log(arg);//传参
+                    
+                    yield 'hello';
+                    // console.log(222);
+                    yield 'world';
+                    // console.log(333);
+                    return 'ending';
+                }//yield相当于分隔符
+
+                var z = helloWorldGenerator('45');
+
+
+                console.log(z.next())// { value: 'hello', done: false }
+
+                console.log(z.next())// { value: 'world', done: false }
+
+                console.log(z.next())// { value: 'ending', done: true }
+
+                console.log(z.next())// { value: undefined, done: true }
+
+            //调用 Generator 函数，返回一个遍历器对象，代表 Generator 函数的内部指针。
+            // 以后，每次调用遍历器对象的next方法，就会返回一个有着value和done两个属性的对象。
+            // value属性表示当前的内部状态的值，是yield表达式后面那个表达式的值；done属性是一个布尔值，表示是否遍历结束。
+
+
+
+
+
+//函数的异步应用
+            // 传统的编程语言，早有异步编程的解决方案（其实是多任务的解决方案）。其中有一种叫做"协程"（coroutine），意思是多个线程互相协作，完成异步任务。
+
+                                                        function* asyncJob() {
+                                                        // ...其他代码
+                                                        var f = yield readFile(fileA);
+                                                        // ...其他代码
+                                                        }
+            // 上面代码的函数asyncJob是一个协程，它的奥妙就在其中的yield命令。它表示执行到此处，执行权将交给其他协程。也就是说，yield命令是异步两个阶段的分界线。
+
+    </script>
+</body>
+</html>

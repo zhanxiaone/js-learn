@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <script>
+                    //浅拷贝和深拷贝只针对引用类型
+
+
+
+        //浅拷贝：拷贝的是地址值，拷贝后两个变量指向同一个对象
+            //常见方法：
+                    //拷贝对象：Object.assign()、扩展运算符{...obj}
+                    //拷贝数组：Array.prototype.slice()、Array.prototype.concat()、扩展运算符[...arr]
+
+
+                    /* 
+                            Object.assign() 的含义
+
+                            作用：将一个或多个源对象的可枚举自有属性复制到目标对象，并返回修改后的目标对象。
+                            基本语法：
+                                Object.assign(target, ...sources)
+
+                                target：目标对象（会被修改）
+
+                                sources：一个或多个源对象
+                    */
+
+
+
+
+
+                    const o={
+                        uname:'zmj',
+                        age:18,
+                    };
+                    const o2=o;
+                    o2.age=20;
+                    console.log(o); //{uname: 'zmj', age: 20}
+                    console.log(o2); //{uname: 'zmj', age: 20}  原对象也被修改了
+                    
+                    
+                    
+                    
+                    
+                    //浅拷贝 不会改变原对象的值，但会改变原对象内部属性的值
+                    const obj={
+                        uname:'zmj',
+                        age:18,
+                        family:{
+                            father:'z',
+                        }
+                    };
+                    const obj2=Object.assign({},obj);
+                    const obj3={...obj};
+                    console.log(obj2); //{uname: 'zmj', age: 18}
+                    console.log(obj3); //{uname: 'zmj', age: 18}
+                    obj2.age=20;
+                    obj2.family.father='x'; //浅拷贝遇到多层对象时，就会出现问题，改变了原对象内部属性的值
+
+                    console.log(obj); //{uname: 'zmj', age: 18 ,family: {father: 'x'}}
+                    console.log(obj2); //{uname: 'zmj', age: 20 ,family: {father: 'x'}}
+                    console.log(obj3); //{uname: 'zmj', age: 18 ,family: {father: 'x'}}
+
+
+
+
+
+
+
+
+
+
+        //深拷贝：拷贝的是对象的内容，拷贝后两个变量指向不同的对象 
+            //常见方法：
+                    //JSON.parse(JSON.stringify(obj)) ，lodash的_.cloneDeep()方法可以实现深拷贝 
+                    //递归实现深拷贝：通过递归的方式实现深拷贝，可以拷贝对象的所有属性，包括函数、Symbol属性、undefined等
+                    
+
+
+
+                    // 1.函数递归：函数内部自己调用自己，直到满足退出条件（return）时停止调用
+                                    /*  eg:   function getTime(){
+                                            document.querySelector('div').innerHTML=new Date().toLocaleString();
+                                            setTimeout(getTime,1000);
+                                        }
+                                        getTime(); */
+
+
+                                const obj21={
+                                        uname:'zmj',
+                                        age:18,
+                                        hobby:['swimming','running']
+                                    };
+                                        const o21={};
+                                        //拷贝函数
+                                        function deepCopy(newObj,oldObj){
+                                            for(let k in oldObj){
+                                            //当浅拷贝遇到深层对象时，就需要进行深拷贝了
+                                            //判断oldObj[k]是否为对象
+                                            if(oldObj[k] instanceof Object){
+                                                //给新对象添加属性k，值为一个空数组
+                                                newObj[k]=[];
+                                                deepCopy(newObj[k],oldObj[k]);
+                                            }else{
+                                            //k:属性名   oldObj[k]:属性值
+                                            //newObj[k]=== o.name
+                                            //oldObj[k]=== 'zmj'
+                                            newObj[k]=oldObj[k];
+
+                                            }
+                                
+                                        }
+                                    }
+                                deepCopy(o21,obj21);
+
+
+                                console.log(o21); //{uname: 'zmj', age: 18}
+                                o21.age=20;
+                                console.log(o21); //{uname: 'zmj', age: 20}
+                                console.log(obj21); //{uname: 'zmj', age: 18}
+                                o21.hobby[0]='singing';
+                                console.log(o21); //{uname: 'zmj', age: 20, hobby: ['singing', 'running']}
+                                console.log(obj21); //{uname: 'zmj', age: 18, hobby: ['swimming', 'running']}
+                            
+                    // *****2.JSON.parse(JSON.stringify(obj)) ，第三方库lodash的_.cloneDeep()方法可以实现深拷贝 ，可以直接使用，使用起来也比较简单
+                                    //eg: lodash的_.cloneDeep()方法可以实现深拷贝 (vscode中安装lodash插件后，可以直接使用_.cloneDeep()方法进行深拷贝)
+                                                const obj6={
+                                                    uname:'zmj',
+                                                    age:18,
+                                                    hobby:['swimming','running'],
+                                                    family:{
+                                                        father:'z',
+                                                    }
+                                                }
+                                                const o6=_.cloneDeep(obj6);
+                                                console.log(o6); 
+                                                o6.family.father='x';
+                                                console.log(o6); //{uname: 'zmj', age: 18, hobby: ['swimming', 'running'], family: {father: 'x'}}
+                                                console.log(obj6); //{uname: 'zmj', age: 18, hobby: ['swimming', 'running'], family: {father: 'z'}}
+                                    
+
+
+                                    //eg:利用json进行深拷贝
+                                                const obj7={
+                                                    uname:'zmj',
+                                                    age:18,
+                                                    hobby:['swimming','running'],
+                                                    family:{
+                                                        father:'z',
+                                                    }
+                                                }
+                                                const o7=JSON.parse(JSON.stringify(obj7));  //JSON.parse(JSON.stringify(obj))的原理：先将对象转换为JSON字符串，再将JSON字符串转换为对象，这样就实现了深拷贝，因为JSON.stringify()方法在转换对象时会忽略函数、Symbol属性、undefined等，所以这种方法有一定的局限性，不能完全替代递归实现深拷贝的方法。
+                                                console.log(o7); 
+                                                o7.family.father='x';
+                                                console.log(o7); //{uname: 'zmj', age: 18, hobby: ['swimming', 'running'], family: {father: 'x'}}
+                                                console.log(obj7); //{uname: 'zmj', age: 18, hobby: ['swimming', 'running'], family: {father: 'z'}}  原对象没有被修改
+
+
+
+
+
+
+    </script>
+</body>
+</html>

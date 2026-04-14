@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Ⅰ-对象的概念
+        //     ① 什么是对象?
+        //         多个数据的封装体
+        //         用来保存多个数据的容器
+        //         一个对象代表现实中的一个事物
+        //     ② 为什么要用对象?
+        //         统一管理多个数据
+        //     ③ 对象的组成
+        //         属性: 属性名(字符串)和属性值(任意)组成
+        //         方法: 一种特别的属性(属性值是函数)
+
+
+
+        //Ⅱ-如何访问对象内部数据?
+                // .属性名: 编码简单, 有时不能用
+                // ['属性名']: 编码麻烦, 能通用
+            var p={
+                name:'zmj',
+                age:19,
+                setName:function(name){
+                    this.name=name;
+                },
+                setAge:function(age){
+                    this.age=age;
+                }
+            }
+            p.setName('bob');
+            p['setAge'](20);
+            console.log(p.name,p['age']);
+            
+
+
+        // Ⅲ-什么时候必须使用['属性名']的方式?
+            // 属性名包含特殊字符: - 空格
+            // 属性名不确定
+
+
+                    var p = {}
+                    //1. 给p对象添加一个属性: content type: text/json
+                    // p.content-type = 'text/json' //不能用
+                    p['content-type'] = 'text/json'
+                    console.log(p['content-type'])
+
+                
+
+                    //2. 属性名不确定（动态添加属性名）
+                    var propName = 'myAge'
+                    var value = 18
+                    //p.propName = value // 相当于给p添加固定属性名为propName而不是myAge 但是在访问p.propName时其实是在访问p.myAge显示underfined 不能用 
+                    p[propName] = value   //propName是变量名 不用加单引号
+                    console.log(p[propName])
+
+
+
+
+
+            //创建对象的三种方式
+                //1.利用对象字面量创建
+                    //const obj={}
+                //2.利用new Object
+                    //const obj=new Object()
+
+                    
+                //3.构造函数
+                    function Pig(name){
+                        this.name=name;
+                        this.play=function(){
+                            console.log(123);
+                            
+                        }
+                    }
+
+
+                    //静态成员：类（包括构造函数）的属性和方法
+                    Pig.call=function(){
+                        console.log(345);
+                        
+                    }
+
+
+                    //实例对象和构造函数的原型对象相通
+                    Pig.prototype.sex='女';
+
+
+
+                    const peiqi=new Pig('佩奇');
+                    peiqi.play();
+                    /*  peiqi.call();静态成员只能通过构造函数访问，不能通过实例化对象访问*/
+                    console.log(peiqi.sex);
+                    
+
+                //实例化执行过程
+                    //1.创造新空对象    
+                    //2.构造函数的this指向新对象
+                    //3.执行构造函数代码，修改this,添加新的属性
+                    //4.返回新对象
+
+
+
+    </script>
+</body>
+</html>

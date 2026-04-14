@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .model{
+            width: 300px;
+            height: 150px;
+            border: 1px solid #ccc;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            display: none;
+            box-shadow: inset 0 0 10px #ccc;
+            border-radius: 5px;
+        }
+        .model .header{
+            height: 30px;
+            line-height: 30px;
+            background-color: #ccc;
+            padding-left: 10px;
+        }
+        .model .header i{
+            float: right;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .model .body{
+            height: 100px;
+            padding-left: 10px;
+            display: flex;
+            justify-content: center; 
+             align-items: center; 
+        }
+
+    </style>
+</head>
+<body>
+    <button id="delete">删除</button>
+    <button id="login">登录</button>
+
+<!-- 
+    <div class="model">
+        <div class="header">温馨提示<i>x</i></div>   <i>x</i> 斜体 
+        <div class="body">您没有删除权限操作</div>
+    </div>
+
+ -->
+
+
+    <script>
+        //1.model 构造函数封装
+        function Model(title='',content=''){
+            this.modelBox=document.createElement('div');
+            this.modelBox.className='model';
+            this.modelBox.innerHTML=`
+                <div class="header">${title}<i class="close">x</i></div>
+                <div class="body">${content}</div>
+            `;
+            
+        }
+      
+
+        //2.给构造函数原型对象挂载open方法
+        Model.prototype.open=function(){
+            //判断页面中是否有模态框，如果有就不创建了
+            const model = document.querySelector('.model');
+            if(model){
+                model.style.display='block';
+                return; ///return 就是“退出当前函数，并且可以带回一个结果”。
+            }
+
+
+
+
+
+
+            //不要用箭头函数，因为箭头函数没有this，this指向外层作用域window
+
+                document.body.append(this.modelBox);
+                this.modelBox.style.display='block';
+
+
+                //只有在打开了模态框之后，才可以绑定关闭事件，
+                document.querySelector('.close').addEventListener('click',()=>{
+                    this.close();
+                    //this指向当前实例对象
+                    //如果使用普通函数，this指向触发事件的元素，即.close（i）元素[没有close方法 会报错]，所以需要使用箭头函数来保持this指向当前实例对象。
+                });
+        }
+
+        Model.prototype.close=function(){
+            document.body.removeChild(this.modelBox);
+
+        }
+ 
+
+        //绑定事件
+        document.querySelector('#delete').addEventListener('click',function(){
+            //创建实例调用函数
+            const model = new Model('温馨提示','您没有删除权限操作');
+            model.open();
+        });
+
+
+
+
+        document.querySelector('#login').addEventListener('click',()=>{
+            const model = new Model('友情提示','请先登录');
+            model.open();
+        });
+
+       
+
+
+
+
+    </script>
+</body>
+</html>

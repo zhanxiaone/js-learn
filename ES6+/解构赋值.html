@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ES6 允许按照一定模式, 从数组和对象中提取值, 对变量进行赋值, 这被称为解构
+        // 字符串解构
+        // const [a, b, c, d, e] = "hello";
+
+
+       /*  对象简写
+            const name='z';
+            const age=18;
+            //ES5写法
+            // const obj={
+            //     name:name,
+            //     age:age
+            // }
+            //ES6写法 把变量名当做属性名，变量值当做属性值
+            const obj={
+                name,
+                age
+            }
+            console.log(obj); //{name: 'z', age: 18} */
+
+
+
+/*  数组解构：将数组的单元值快速批量赋值给一系列变量的简洁语法
+                    规则：数据结构具有Iterator接口可采用数组形式的解构赋值
+                    形式：const [x, y] = [1, 2]
+                    默认：const [x, y = 2] = [1] 
+
+                    
+                    多维数组解构：
+                    const[a,b,[c,d]]=[1,2,[3,4]]
+                    
+                    */
+
+                /* 对象解构：将对象属性和方法快速批量赋值给一系列变量的简洁语法
+                        const{uname,age}={uname:"z",age:18}
+                            要求属性名和变量名必须一致
+                    形式：const { x, y } = { x: 1, y: 2 }
+                    默认：const { x, y = 2 } = { x: 1 }
+                    改名：const { x, y: z } = { x: 1, y: 2 } */
+
+                    const obj={
+                        uname:'z',
+                        age:18
+                    };
+                    const {uname}=obj;
+                    console.log(uname);//z
+                    
+                    // console.log(obj.age);
+                    // console.log(obj.uname);//obj重复使用 这时可以结构
+                    // const uname='m';
+                    // const {uname:username,age}={uname:"z",age:18}//对象解构的变量名，可以重新改名 旧变量名：新变量名
+                    // console.log(age);
+
+           
+//多级对象解构
+            const pig={
+                name:'佩奇',
+                family:{
+                    mother:'妈妈',
+                    father:'爸爸'
+                },
+                age:6
+            }
+            const{name,family:{mother,father},age}=pig;
+            console.log(name);
+            console.log(mother);
+            console.log(father);
+            console.log(age);
+
+
+
+
+
+
+
+
+
+
+
+
+        /* 函数参数解构
+            数组解构：function Func([x = 0, y = 1]) {}
+            对象解构：function Func({ x = 0, y = 1 } = {}) {} */
+
+    </script>
+</body>
+</html>
